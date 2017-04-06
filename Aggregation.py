@@ -17,9 +17,9 @@ click_rel=0.30
 #'Count' - total number of times the combination appeared together
 #'Sum' - total number of time the booking was done with his combination
 
-grp_agg = train.groupby(['srch_destination_id','hotel_cluster'])['is_booking'].grp_agg(['sum','count'])
+grp_agg = train.groupby(['srch_destination_id','hotel_cluster'])['is_booking'].agg(['sum','count'])
 grp_agg.reset_index(inplace=True)
-grp_agg = grp_agg.groupby(['srch_destination_id','hotel_cluster']).sum().reset_index()
+#grp_agg = grp_agg.groupby(['srch_destination_id','hotel_cluster']).sum().reset_index()
 grp_agg['count'] = grp_agg['count']-grp_agg['sum']
 
 #count reduced by frequency of booking will give number of clicks
